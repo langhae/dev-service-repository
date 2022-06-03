@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tensorflow-training
+  namespace: tensorflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tensorflow
+  template:
+    metadata:
+      labels:
+        app: tensorflow
+    spec:
+      serviceAccountName: s3-mounter
+      containers:
+      - name: tensorflow-training
+        image: langhae/tensorflow:latest
+        imagePullPolicy: Always
+        # command: ["/bin/sh","-c"]
+        # args: ["python faces_test_schedule_1.py"]t
+        volumeMounts:
+        - mountPath: /app/img/
+          name: s3data
+      volumes:
+      - hostPath:
+          path: /mnt/s3data
+        name: s3data
+
