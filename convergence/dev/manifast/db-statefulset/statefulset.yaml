@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: db
+  serviceName: mysql-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: mysql:5.7
+        args:
+        - "--ignore-db-dir=lost+found"
+        ports:
+        - containerPort: 3306
+          name: tcp
+        envFrom:
+          - secretRef:
+              name: db-envs
+        volumeMounts:
+        - name: mysql-volume
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "gp2"
+      resources:
+        requests:
+          storage: 5Gi

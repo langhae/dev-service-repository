@@ -1,0 +1,17 @@
+namespace: dev
+namePrefix: dev-
+commonLabels:
+  app: dev-bigdata
+secretGenerator:
+- name: fastapi-envs
+  literals:
+  - DB=mysql+pymysql
+  - MYSQL_USER=langhae
+  - MYSQL_PASSWORD=1234qwer
+  - MYSQL_DATABASE=db
+  - MYSQL_HOST=db-0.mysql-svc
+  - POST_URI=recommend
+  - GET_URI=no_user
+resources:
+- deployment.yaml
+- service.yaml

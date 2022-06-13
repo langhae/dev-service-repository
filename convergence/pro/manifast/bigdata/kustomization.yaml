@@ -1,0 +1,17 @@
+namespace: pro
+namePrefix: pro-
+commonLabels:
+  app: pro-bigdata
+secretGenerator:
+- name: fastapi-envs
+  literals:
+  - DB=mysql+pymysql
+  - MYSQL_USER=langhae
+  - MYSQL_PASSWORD=1234qwer
+  - MYSQL_DATABASE=db
+  - MYSQL_HOST=pro-rds-svc.pro
+  - POST_URI=recommend
+  - GET_URI=no_user
+resources:
+- deployment.yaml
+- service.yaml

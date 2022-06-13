@@ -1,0 +1,13 @@
+namespace: dev
+commonLabels:
+  app: db
+secretGenerator:
+- name: db-envs
+  literals:
+  - MYSQL_DATABASE=db
+  - MYSQL_PASSWORD=1234qwer
+  - MYSQL_USER=langhae
+  - MYSQL_ROOT_PASSWORD=1234qwer
+resources:
+- service.yaml
+- statefulset.yaml

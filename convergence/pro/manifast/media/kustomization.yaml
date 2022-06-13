@@ -1,0 +1,18 @@
+namespace: pro
+namePrefix: pro-
+commonLabels:
+  app: pro-media
+secretGenerator:
+- name: fastapi-envs
+  literals:
+  - DB=mysql+pymysql
+  - MYSQL_USER=langhae
+  - MYSQL_PASSWORD=1234qwer
+  - MYSQL_DATABASE=db
+  - MYSQL_HOST=pro-rds-svc.pro
+  - POST_AI_URI=http://pro-ai-svc.pro/faceimage
+  - POST_BIGDATA_URI=http://pro-bigdata-svc.pro/recommend
+  - POST_URI=post_image
+resources:
+- deployment.yaml
+- service.yaml

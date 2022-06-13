@@ -1,4 +1,0 @@
-resources:
-- statefulset.yaml
-- svc.yaml
-- storageclass.yaml

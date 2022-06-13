@@ -1,0 +1,4 @@
+namespace: pro
+namePrefix: pro-
+resources:
+- service.yaml
